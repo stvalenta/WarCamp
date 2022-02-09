@@ -251,7 +251,7 @@ a {
 }
 
 .text-secondary {
-  color: #ff652f;
+  color: darkgreen;
 }
 
 
@@ -277,3 +277,7 @@ footer {
     position: relative;
     top:-180px;
   }
+}
+.ikona {
+  text-align: center;
+}
