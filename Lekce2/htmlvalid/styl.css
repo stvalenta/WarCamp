@@ -1,0 +1,29 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+body {
+    text-align: center;
+    background-color: burlywood;
+}
+.form-control{
+  margin-left: 37%;
+  width: 25%;
+}
+.formalni{
+  background-color: rgb(168, 165, 165);
+}
+.text-danger{
+  font-size: 20px;
+  color: darkred;
+}
+
+@media only screen and (max-width: 740px) {
+  .form-control{
+    margin-left: 25%;
+    width: 50%;
+  }
