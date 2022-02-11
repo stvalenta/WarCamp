@@ -1,0 +1,12 @@
+sudo su
+sudo yum update -y
+sudo yum install -y docker
+sudo service docker start
+sudo usermod -a -G docker ec2-user //přihlášení
+EXIT
+docker info //kontrola dockeru
+docker run -d -p 80:5000 training/webapp:latest python app.py
+curl http://localhost
+docker run -d -p 80:80 --name nginx nginx // spuštění kontejneru
+docker ps // proces
+docker container ls // vypíše kontejnery

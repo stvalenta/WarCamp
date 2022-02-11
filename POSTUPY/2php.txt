@@ -1,0 +1,14 @@
+sudo su
+sudo yum update -y
+yum install wget
+sudo yum update -y
+sudo yum install -y httpd
+sudo yum install -y php
+sudo yum install -y mysql
+sudo service httpd start  --->  kontrola ip, server běží
+cd ..       (home)
+cd /var/www/html
+sudo touch testing.php
+sudo nano testing.php ---> znovu ip možná název souboru
+
+

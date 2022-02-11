@@ -1,0 +1,16 @@
+linkedin - googlejebu
+github - googlejebu1
+jobstack.it - hesloneheslo
+GitHub token: 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
+----------------------------------------------
+echo "# ddd" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/stvalenta/ddd.git
+git push -u origin main
+-----------------------------------------------
+git remote add origin https://github.com/stvalenta/ddd.git
+git branch -M main
+git push -u origin main
