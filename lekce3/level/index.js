@@ -6,14 +6,12 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
       var nedata = data.municipalities[x].adresaUradu.kraj;
       pokus[x] = nedata; 
     }
-    console.log(pokus[0]);
     const unique = pokus.filter((kraje, index) => pokus.indexOf(kraje) == index);
-    console.log(unique);
     for (let i=0; i<unique.length -1; i++){
       document.getElementById('kraje').innerHTML += "<option value='" + unique[i] + "'>" + unique[i] + "</option>";
       const selectElement = document.querySelector('#kraje');
       selectElement.addEventListener('change', (event) => {
-        const result = document.querySelector('.result');
+        document.getElementById('cekani').style.display = "block";
         document.querySelector("#zobraz").innerHTML = "<thead><tr><th>Město</th><th>ID schránky</th></tr></thead><tbody>"
           for(let y=0; y<data.municipalities.length; y++){
             var adata = data.municipalities[y].adresaUradu.kraj;
@@ -27,5 +25,3 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
     }
   document.querySelector("#zobraz").innerHTML += "</tbody></table></div>"
   })
-
-    
