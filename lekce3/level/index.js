@@ -11,7 +11,6 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
       document.getElementById('kraje').innerHTML += "<option value='" + unique[i] + "'>" + unique[i] + "</option>";
       const selectElement = document.querySelector('#kraje');
       selectElement.addEventListener('change', (event) => {
-        document.getElementById('cekani').style.display = "block";
         document.querySelector("#zobraz").innerHTML = "<thead><tr><th>Město</th><th>ID schránky</th></tr></thead><tbody>"
           for(let y=0; y<data.municipalities.length; y++){
             var adata = data.municipalities[y].adresaUradu.kraj;
