@@ -2,7 +2,7 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
   .then(response => response.json())
   .then(data => {
     const pokus = [];
-    output = "<thead><tr><th>Město</th><th>ID schránky</th></tr></thead><tbody>";
+    
     for(let x=0; x<data.municipalities.length; x++){
       var nedata = data.municipalities[x].adresaUradu.kraj;
       pokus[x] = nedata; 
@@ -11,8 +11,9 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
     for (let i=-1; i<unique.length -1; i++){
       document.getElementById('kraje').innerHTML += "<option value='" + unique[i] + "'>" + unique[i] + "</option>";
       const selectElement = document.querySelector('#kraje');
+      
       selectElement.addEventListener('change', (event) => {
-
+        output = "<thead><tr><th>Město</th><th>ID schránky</th></tr></thead><tbody>";
         document.getElementById('cekani').style.display = "block";
         
         for(let y=0; y<data.municipalities.length; y++){
