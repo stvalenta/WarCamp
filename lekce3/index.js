@@ -36,8 +36,7 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
   output += "</tbody></table></div>";
   document.querySelector("#zobraz").innerHTML += output;
   document.getElementById('cekani').style.display = "none";
-  document.getElementById('zobraz')
-  .addEventListener('click', function (item) {
+  document.getElementById('zobraz').addEventListener('click', function (item) {
 
       // To get tr tag 
       // In the row where we click

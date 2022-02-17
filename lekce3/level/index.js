@@ -36,3 +36,42 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
     
   
   });
+   
+    document.getElementById('zobraz').addEventListener('click', function (item) {
+
+      // To get tr tag 
+      // In the row where we click
+      var row = item.path[1];
+
+      var row_value = "";
+
+      for (var j = 0; j < row.cells.length; j++) {
+
+          row_value += row.cells[j].innerHTML;
+          row_value += " | ";
+      }
+
+      alert(row_value);
+      function download(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+      
+        element.style.display = 'none';
+        document.body.appendChild(element);
+      
+        element.click();
+      
+        document.body.removeChild(element);
+      }
+      
+      // Start file download.
+      download("hello.txt", row_value);
+
+      // Toggle the highlight
+      if (row.classList.contains('highlight'))
+          row.classList.remove('highlight');
+      else
+          row.classList.add('highlight');
+  }); 
+  
