@@ -1,8 +1,9 @@
+document.getElementById('cekani').style.display = "block";
 fetch("https://data.cesko.digital/obce/1/obce.json")
   .then(response => response.json())
   .then(data => {
     $('#zobraz').after('<div id="nav"></div>');
-    
+
     const pokus = [];
     
     for(let x=0; x<data.municipalities.length; x++){
@@ -16,7 +17,7 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
       selectElement.addEventListener('change', (event) => {
         document.querySelector("#nav").innerHTML = "";
         output = "<thead><tr><th>Město</th><th>ID schránky</th></tr></thead><tbody>";
-        document.getElementById('cekani').style.display = "block";
+
         
         for(let y=0; y<data.municipalities.length; y++){
           var adata = data.municipalities[y].adresaUradu.kraj;
@@ -47,10 +48,10 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
             $('#zobraz tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
                     css('display','table-row').animate({opacity:1}, 300);
         });
-        document.getElementById('cekani').style.display = "none";
-        document.getElementById('cekani').style.display = "none";
+
       });
     }
+    document.getElementById('cekani').style.display = "none";
   });
     document.getElementById('zobraz').addEventListener('click', function (item) {
 
