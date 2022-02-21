@@ -1,0 +1,26 @@
+body{
+    box-sizing: border-box;
+    background-color: green;
+ }
+ h1{
+    text-align: center;
+    background-color: yellow;
+  }
+  #okraje{
+    text-align: center;
+  }
+  label{
+    font-size: 1.5em;
+  }
+  #cekani{
+    padding-top: 15vh;
+    text-align: center;
+    display: none;
+  }
+  .active{
+    background-color: black;
+  }
+  #nav{
+    background-color: yellow;
+    color: lightblue;
+  }
