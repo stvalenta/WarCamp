@@ -35,7 +35,7 @@ var_dump($nabidkaForOption[0]);
     <title>Document</title>
 </head>
 <body>
-    <h1>Města v kraji</h1>
+    <h1>ID datových schránek</h1>
     
     <div id="okraje">
       <label for="kraje">Vyberte kraj: </label>
