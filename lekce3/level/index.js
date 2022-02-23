@@ -3,9 +3,7 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
   .then(response => response.json())
   .then(data => {
     $('#zobraz').after('<div id="nav"></div>');
-
     const pokus = [];
-    
     for(let x=0; x<data.municipalities.length; x++){
       var nedata = data.municipalities[x].adresaUradu.kraj;
       pokus[x] = nedata; 
@@ -17,8 +15,6 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
       selectElement.addEventListener('change', (event) => {
         document.querySelector("#nav").innerHTML = "";
         output = "<thead><tr><th>Město</th><th>ID schránky</th></tr></thead><tbody>";
-
-        
         for(let y=0; y<data.municipalities.length; y++){
           var adata = data.municipalities[y].adresaUradu.kraj;
           if (adata == event.target.value){
@@ -48,47 +44,36 @@ fetch("https://data.cesko.digital/obce/1/obce.json")
             $('#zobraz tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
                     css('display','table-row').animate({opacity:1}, 300);
         });
-
       });
     }
     document.getElementById('cekani').style.display = "none";
   });
-    document.getElementById('zobraz').addEventListener('click', function (item) {
-
-      // To get tr tag 
-      // In the row where we click
-      var row = item.path[1];
-
-      var row_value = "";
-
-      for (var j = 0; j < row.cells.length; j++) {
-
-          row_value += row.cells[j].innerHTML;
-          row_value += " | ";
-      }
-
-      alert(row_value);
-      function download(filename, text) {
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', filename);
-      
-        element.style.display = 'none';
-        document.body.appendChild(element);
-      
-        element.click();
-      
-        document.body.removeChild(element);
-      }
-      
-      // Start file download.
-      download("hello.txt", row_value);
-
-      // Toggle the highlight
-      if (row.classList.contains('highlight'))
-          row.classList.remove('highlight');
-      else
-          row.classList.add('highlight');
+  document.getElementById('zobraz').addEventListener('click', function (item) {
+    // To get tr tag 
+    // In the row where we click
+    var row = item.path[1];
+    var row_value = "";
+    for (var j = 0; j < row.cells.length; j++) {
+      row_value += row.cells[j].innerHTML;
+      row_value += " | ";
+    }
+    alert(row_value);
+    function download(filename, text) {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    }
+    // Start file download.
+    download("hello.txt", row_value);
+    // Toggle the highlight
+    if (row.classList.contains('highlight'))
+        row.classList.remove('highlight');
+    else
+        row.classList.add('highlight');
   }); 
 
   

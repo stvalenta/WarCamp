@@ -59,7 +59,7 @@ var_dump($nabidkaForOption[0]);
 $js_array = json_encode($nabidkaForOption);
 echo "var javascript_array = ". $js_array . ";\n";
 ?>
-    for(z=0;z<javascript_array.length; z++){javascript_array
+    for(z=-1;z<javascript_array.length; z++){javascript_array
       document.getElementById('kraje').innerHTML += "<option value='" + javascript_array[z] + "'>" + javascript_array[z] + "</option>";
       console.log(javascript_array[1]);
     }
