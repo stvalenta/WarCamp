@@ -22,6 +22,11 @@ foreach(array_values($nabidka) as $x => $x_value) {
   $i++;
 }
 var_dump($nabidkaForOption[0]);
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+  $var = ($_POST['taskOption']);
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,20 +43,25 @@ var_dump($nabidkaForOption[0]);
     <h1>ID datových schránek</h1>
     
     <div id="okraje">
-      <label for="kraje">Vyberte kraj: </label>
-      <select id="kraje"></select>
+      <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <label for="kraje">Vyberte kraj: </label>
+        <select id="kraje" name="taskOption" ></select>
+        <input type="submit" value="Submit the form"/>
+      </form>
     </div>
     
     <div id="cekani">
       <i class="fas fa-10x fa-sync fa-spin"></i>
     </div>
-
-    <div class="row">
-    <div class='container col-sm-6 mt-3'>
-        <table class='table table-dark table-striped table-bordered table-hover' id="zobraz"></table>
-    </div>
-    </div>
-
+<?php
+    for ($q=0; $q<$dataLength; $q++){
+  if ($var == $data["municipalities"][$q]["adresaUradu"]["kraj"]){
+    echo $data["municipalities"][$q]["hezkyNazev"], " ID: ";
+    echo $data["municipalities"][$q]["datovaSchrankaID"];
+    echo "<br>";
+  }
+}
+?>
 </body>
 <script src="https://kit.fontawesome.com/6d2ea823d0.js"></script>
 <script>
@@ -59,9 +69,15 @@ var_dump($nabidkaForOption[0]);
 $js_array = json_encode($nabidkaForOption);
 echo "var javascript_array = ". $js_array . ";\n";
 ?>
-    for(z=-1;z<javascript_array.length; z++){javascript_array
+    for(z=0;z<javascript_array.length-1; z++){
       document.getElementById('kraje').innerHTML += "<option value='" + javascript_array[z] + "'>" + javascript_array[z] + "</option>";
       console.log(javascript_array[1]);
     }
+    selectElement = document.querySelector('#kraje');
+    selectElement.addEventListener('change', (event) => {
+      userChoise = event.target.value;
+      console.log(userChoise);
+    })
+    
   </script>
 </html>
