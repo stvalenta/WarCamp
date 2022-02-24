@@ -54,13 +54,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       <i class="fas fa-10x fa-sync fa-spin"></i>
     </div>
 <?php
-    for ($q=0; $q<$dataLength; $q++){
-  if ($var == $data["municipalities"][$q]["adresaUradu"]["kraj"]){
-    echo $data["municipalities"][$q]["hezkyNazev"], " ID: ";
-    echo $data["municipalities"][$q]["datovaSchrankaID"];
-    echo "<br>";
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+  echo "<div class='container mt-3'>";
+  echo "<table class='table table-striped table-hover'>";
+  echo "<thead>
+          <tr>
+           <th>Město</th>
+           <th>ID datové schránky</th>
+          </tr>
+        </thead>
+        <tbody>";
+  for ($q=0; $q<$dataLength; $q++){
+    if ($var == $data["municipalities"][$q]["adresaUradu"]["kraj"]){
+      echo "<tr><td>";
+      echo $data["municipalities"][$q]["hezkyNazev"], "</td>", "<td>";
+      echo $data["municipalities"][$q]["datovaSchrankaID"], "</td>";
+      echo "</tr>";
+      
+    }
   }
+  echo "</tbody></table></div>";
 }
+ 
 ?>
 </body>
 <script src="https://kit.fontawesome.com/6d2ea823d0.js"></script>
