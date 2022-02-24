@@ -24,6 +24,10 @@ foreach(array_values($nabidka) as $x => $x_value) {
 var_dump($nabidkaForOption[0]);
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $var = ($_POST['taskOption']);
+  var_dump($var);
+  if ($var == "Hlavní"){
+    $var = "Hlavní město Praha";
+  }
 }
 
 
@@ -45,10 +49,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     <div id="okraje">
       <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <label for="kraje">Vyberte kraj: </label>
-        <select id="kraje" name="taskOption" ></select>
+        <select id="kraje" name="taskOption" >
+          <?php 
+          for($t=0;$t<$krajeLength-1;$t++){
+            echo "<option value=", $nabidkaForOption[$t], ">", $nabidkaForOption[$t], "</option>";
+          }
+          ?>
+        </select>
         <input type="submit" value="Submit the form"/>
       </form>
     </div>
+    <?php
+    echo "<p class='vyber'>Vybrali jste kraj: ", $var, "</p>";
+    ?>
     
     <div id="cekani">
       <i class="fas fa-10x fa-sync fa-spin"></i>
@@ -67,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
   for ($q=0; $q<$dataLength; $q++){
     if ($var == $data["municipalities"][$q]["adresaUradu"]["kraj"]){
       echo "<tr><td>";
-      echo $data["municipalities"][$q]["hezkyNazev"], "</td>", "<td>";
+      echo $data["municipalities"][$q]["hezkyNazev"], "</td><td>";
       echo $data["municipalities"][$q]["datovaSchrankaID"], "</td>";
       echo "</tr>";
       
@@ -79,20 +92,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 </body>
 <script src="https://kit.fontawesome.com/6d2ea823d0.js"></script>
-<script>
-<?php
-$js_array = json_encode($nabidkaForOption);
-echo "var javascript_array = ". $js_array . ";\n";
-?>
-    for(z=0;z<javascript_array.length-1; z++){
-      document.getElementById('kraje').innerHTML += "<option value='" + javascript_array[z] + "'>" + javascript_array[z] + "</option>";
-      console.log(javascript_array[1]);
-    }
-    selectElement = document.querySelector('#kraje');
-    selectElement.addEventListener('change', (event) => {
-      userChoise = event.target.value;
-      console.log(userChoise);
-    })
-    
-  </script>
+
 </html>
