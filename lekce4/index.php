@@ -21,6 +21,7 @@ foreach(array_values($nabidka) as $x => $x_value) {
   $nabidkaForOption[$i] = $x_value;
   $i++;
 }
+$var = "";
 var_dump($nabidkaForOption[0]);
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $var = ($_POST['taskOption']);
