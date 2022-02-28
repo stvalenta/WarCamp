@@ -26,9 +26,6 @@ var_dump($nabidkaForOption[0]);
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $var = ($_POST['taskOption']);
   var_dump($var);
-  if ($var == "Hlavní"){
-    $var = "Hlavní město Praha";
-  }
 }
 
 
@@ -53,7 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         <select id="kraje" name="taskOption" >
           <?php 
           for($t=0;$t<$krajeLength-1;$t++){
-            echo "<option value=", $nabidkaForOption[$t], ">", $nabidkaForOption[$t], "</option>";
+            echo "<option value=\"", $nabidkaForOption[$t], "\">", $nabidkaForOption[$t], "</option>";
+         //   echo '<option value="'. $nabidkaForOption[$t]. '">'. $nabidkaForOption[$t]. '</option>'; //rychlejší
+         //   echo "<option value=\" $nabidkaForOption[$t] \"> $nabidkaForOption[$t] </option>"; 
           }
           ?>
         </select>
