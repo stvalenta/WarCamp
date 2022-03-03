@@ -32,10 +32,7 @@ echo('
         <input type="submit" value="Submit the form">
       </form>
     </div>
-    <p class="vyber">Vybrali jste kraj:  '.$var.'</p>";
-    <div id="cekani">
-      <i class="fas fa-10x fa-sync fa-spin"></i>
-    </div>
+    <p class="vyber">Vybrali jste kraj:  '.$var.'</p>
     ');
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $citiesInDistrict = citiesInKraj();
@@ -59,3 +56,4 @@ echo('
 
 </html>
 ');
+?>
