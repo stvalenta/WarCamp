@@ -1,15 +1,15 @@
 <?php 
 
 const JSON_URL = 'https://data.cesko.digital/obce/1/obce.json';
-function getContentString(){
+function getContentString():string{
     $jsonDataSource = file_get_contents(JSON_URL);
     return $jsonDataSource;
 }
-function decodeJsonFileArray(){
+function decodeJsonFileArray():stdClass{
   $jsonDataSourceObject = json_decode(getContentString());
     return $jsonDataSourceObject;
 }
-function getMunicipalityList(){
+function getMunicipalityList():string{
   $jsonDataSourceObject = decodeJsonFileArray();
   $kraje = [];
   foreach($jsonDataSourceObject->municipalities as $municipality){
@@ -20,7 +20,7 @@ function getMunicipalityList(){
   }
   return implode(' ', $kraje);
 }
-function citiesInKraj(){
+function citiesInKraj():array{
   $selectedCity = $_POST['taskOption'];
   $listOfCitiesAndID = decodeJsonFileArray();
   $obecIDSchranky = [];
