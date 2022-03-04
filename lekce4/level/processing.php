@@ -2,6 +2,19 @@
 
 require('function.php');
 $var = "";
+
+if(!isset($_POST) || empty($_POST['taskOption'])) {
+  echo('Chybně vyplněný formulář!');
+  die;
+}
+
+$citiesInDistrict = citiesInKraj();
+
+if(count($citiesInDistrict) == 0) {
+  echo('Chybně vyplněný formulář!');
+  die;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
   $var = ($_POST['taskOption']);
 }
@@ -23,7 +36,7 @@ echo('
 ');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $citiesInDistrict = citiesInKraj();
+
     echo "<div class='container mt-3'>";
     echo "<table class='table table-striped table-hover'>";
     echo "<thead>

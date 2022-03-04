@@ -1,15 +1,21 @@
 <?php 
 
 const JSON_URL = 'https://data.cesko.digital/obce/1/obce.json';
-function getContentString():string{
-    $jsonDataSource = file_get_contents(JSON_URL);
-    return $jsonDataSource;
+const CACHED_JSON_FILE_PATH = './cache/districts.json';
+function getContentString(){
+    return file_get_contents(JSON_URL);
 }
-function decodeJsonFileArray():stdClass{
-  $jsonDataSourceObject = json_decode(getContentString());
-    return $jsonDataSourceObject;
+function decodeJsonFileArray(){
+  if (isJsonFileCached()) {
+    $jsonDistrictsFile = file_get_contents(CACHED_JSON_FILE_PATH);
 }
-function getMunicipalityList():string{
+if (empty($jsonDistrictsFile)) {
+        $jsonDistrictsFile = getContentString();
+        cacheObtainedJsonFile($jsonDistrictsFile);
+    }
+    return json_decode($jsonDistrictsFile);
+}
+function getMunicipalityList(){
   $jsonDataSourceObject = decodeJsonFileArray();
   $kraje = [];
   foreach($jsonDataSourceObject->municipalities as $municipality){
@@ -20,7 +26,7 @@ function getMunicipalityList():string{
   }
   return implode(' ', $kraje);
 }
-function citiesInKraj():array{
+function citiesInKraj(){
   $selectedCity = $_POST['taskOption'];
   $listOfCitiesAndID = decodeJsonFileArray();
   $obecIDSchranky = [];
@@ -30,4 +36,12 @@ function citiesInKraj():array{
     }
   }
   return $obecIDSchranky;
+}
+function isJsonFileCached()
+{
+    return file_exists(CACHED_JSON_FILE_PATH);
+}
+function cacheObtainedJsonFile($jsonDistrictsFile)
+{
+    file_put_contents(CACHED_JSON_FILE_PATH, $jsonDistrictsFile);
 }
