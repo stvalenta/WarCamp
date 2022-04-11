@@ -1,21 +1,20 @@
 <?php
 
-require('function.php');
 $var = "";
 
-if(!isset($_POST) || empty($_POST['taskOption'])) {
+if(!isset($_GET)) {
   echo('Chybně vyplněný formulář!');
   die;
 }
 
-$citiesInDistrict = citiesInKraj();
+$citiesInDistrict = $citiesAndID->citiesInKraj();
 
 if(count($citiesInDistrict) == 0) {
   echo('Chybně vyplněný formulář!');
   die;
 }
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
-  $var = ($_POST['taskOption']);
+if ($_SERVER["REQUEST_METHOD"] == "GET"){
+  $var = ($_GET['taskOption']);
 }
 
 echo('
@@ -34,7 +33,7 @@ echo('
 <p class="vyber">Vybrali jste kraj:  '.$var.'</p>
 ');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "GET"){
 
     echo "<div class='container mt-3'>";
     echo "<table class='table table-striped table-hover'>";

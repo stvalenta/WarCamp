@@ -3,7 +3,6 @@
 require('function.php');
 
 $districtOptions = getMunicipalityList();
-
 echo('
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +23,7 @@ echo('
         <label for="kraje">Vyberte kraj: </label>
         <select id="kraje" name="taskOption" >
         '.$districtOptions.'
+        <option>Krakonošovo</option>
         </select>
         <input type="submit" value="Submit the form">
       </form>

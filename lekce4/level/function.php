@@ -3,17 +3,17 @@
 const JSON_URL = 'https://data.cesko.digital/obce/1/obce.json';
 const CACHED_JSON_FILE_PATH = './cache/districts.json';
 function getContentString(){
-    return file_get_contents(JSON_URL);
+  return file_get_contents(JSON_URL);
 }
 function decodeJsonFileArray(){
   if (isJsonFileCached()) {
     $jsonDistrictsFile = file_get_contents(CACHED_JSON_FILE_PATH);
-}
-if (empty($jsonDistrictsFile)) {
+  }
+  if (empty($jsonDistrictsFile)) {
         $jsonDistrictsFile = getContentString();
         cacheObtainedJsonFile($jsonDistrictsFile);
-    }
-    return json_decode($jsonDistrictsFile);
+  }
+  return json_decode($jsonDistrictsFile);
 }
 function getMunicipalityList(){
   $jsonDataSourceObject = decodeJsonFileArray();
@@ -27,21 +27,19 @@ function getMunicipalityList(){
   return implode(' ', $kraje);
 }
 function citiesInKraj(){
-  $selectedCity = $_POST['taskOption'];
+  $selectedKraj = $_POST['taskOption'];
   $listOfCitiesAndID = decodeJsonFileArray();
   $obecIDSchranky = [];
   foreach($listOfCitiesAndID->municipalities as $municipality){
-    if($municipality->adresaUradu->kraj == $selectedCity){
+    if($municipality->adresaUradu->kraj == $selectedKraj){
       $obecIDSchranky[] = $municipality->hezkyNazev.' - '.$municipality->datovaSchrankaID;
     }
   }
   return $obecIDSchranky;
 }
-function isJsonFileCached()
-{
-    return file_exists(CACHED_JSON_FILE_PATH);
+function isJsonFileCached(){
+  return file_exists(CACHED_JSON_FILE_PATH);
 }
-function cacheObtainedJsonFile($jsonDistrictsFile)
-{
+function cacheObtainedJsonFile($jsonDistrictsFile){
     file_put_contents(CACHED_JSON_FILE_PATH, $jsonDistrictsFile);
 }
